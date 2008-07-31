@@ -1,0 +1,55 @@
+/*		<div style="clear: none; margin-left: 15px; width: 368px; height: 160px; margin-right: 0pt;border:1px solid #fff; position:absolute;">
+*/
+
+div.scroller { 
+	/* modify width and height of scrolling section if necessary	*/		
+	width: 368px; 
+	height: 160px;
+	overflow: hidden;
+}
+div.scroller div.section {
+	/* modify width and height of each section as needed (should match the size of the scroller window)	*/		
+	width:368px;
+	height:160px;
+	overflow:hidden;
+	float:left;
+	padding:2px;
+
+}
+div.scroller div.content {
+	width: 10000px;
+}
+
+#my-glider {
+	color: #fff;
+	
+	
+}
+
+/**** BUTTONS ****/
+
+.next_item, .prev_item {
+	cursor: pointer;
+	height:14px;
+	overflow:hidden;
+	width:14px;
+	position:absolute;
+	text-indent:-9999px;
+	bottom: 0px;
+}
+
+.prev_item {
+	background:transparent url(../Images/arrow_left.png) no-repeat scroll center top;
+	left:0px;
+}
+
+.next_item {
+	background:transparent url(../Images/arrow_right.png) no-repeat scroll center top;
+	right:0px;
+}
+
+.prev_item:hover , .next_item:hover {
+	background-position:center -14px;
+	cursor: pointer;
+}
+

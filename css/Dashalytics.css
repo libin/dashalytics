@@ -1,0 +1,154 @@
+/*
+Dashalytics: A Google Analytics Widget for Mac OSX
+Copyright (C) 2006  Robert Scriva (dashalytics@rovingrob.com)
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
+
+html {
+	height: 100%; margin-bottom: 1px;
+}
+
+body {
+	font: 62.5%/1.3em "Lucida Grande", Verdana, sans-serif; 
+	color: #4C4C4C; 
+	margin: 0; 
+}
+
+body * {
+	margin: 0;
+	padding: 0;
+	color: #fff;
+}
+
+canvas {
+	z-index: 99;
+}
+
+#front {
+	width: 400px;
+	height: 230px;
+	background: url("../Images/front.png") no-repeat;
+}
+
+#top {
+	height: 73px;
+}
+
+#footer {
+	height: 39px;
+	width: 375px;
+}
+
+#scontent {
+	position:absolute;
+	top: 35px;
+}
+
+#siteName {
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFF;
+	text-shadow: 2px 2px 1px #3D3D3D;
+	margin: 0 5px;
+	top: 15px;
+	position: absolute;
+}
+
+#siteName a {
+	cursor: pointer;
+}
+
+a:active, a:link, a:visited { color: #FFAE00; text-decoration: none }
+a:hover { color: #FFC554; text-decoration: none }
+
+#front-updateavailimg {
+	position: absolute;
+	width: 51px;
+	height: 51px;
+	left: 0px;
+	top: 0px;
+	z-index: 999;
+	display: none;
+	background: url("../Images/updateavail.png") no-repeat;
+}
+#front-updateavailimg a {
+	position: absolute;
+	width: 45px;
+	height: 45px;
+	left: 0px;
+	top: 0px;
+	color: white;
+	font-size: 11px;
+	text-align: center;
+	padding: 0px;
+	padding-top: 8px;
+	text-shadow: #000000 1px 1px 3px;
+}
+
+#time_span {
+	padding: 5px;
+	position: absolute;
+	right: 20px;
+	
+	
+}
+
+.mytable {
+	margin-left:auto;
+	margin-right:auto;
+	font: 10px "Helvetica Neue";
+  	font-weight: bold;
+	color:white;
+}
+
+.mytable td {
+	line-height:10px;
+}
+
+.mytable td .left {
+	width:3px;
+	height:12px;
+	display:inline-block;
+}
+
+.mytable td .middle {
+	display:inline-block;
+	padding-bottom:1px;
+	height:11px;
+}
+
+.mytable td .right {
+	height:12px;
+	width:3px;
+	display:inline-block;
+}
+
+.mytable td.selected .left {
+	background: url(../Images/chartselect/stocks_left_select.png) no-repeat top left;
+	width:6px;
+}
+
+.mytable td.selected .middle {
+	color:rgb(51, 76, 118);
+	background: url(../Images/chartselect/stocks_center_select_1px.png) repeat-x top left;
+
+}
+
+.mytable td.selected .right {
+	display:inline-block;
+	background: url(../Images/chartselect/stocks_right_select.png) no-repeat top left;
+	width:6px;
+}

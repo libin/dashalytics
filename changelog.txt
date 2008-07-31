@@ -1,0 +1,74 @@
+Version 3.04 (Apr-2008)
+* Added: 2 years of data now available.
+* Added: Google now has added aggregation. 1d/1w/1m are at a day aggregation. 3m/6m are at a week aggregation. 1yr/2y is at month aggregation.
+* No Leopard support as yet
+
+Version 3.03 (Nov-2007)
+* Fixed: The Google changed something. Broke lots of things.
+
+Version 3.02 (Aug-2007)
+* Fixed: One year of data was actually 11 months!
+* Fixed: Removed a debug message.
+* Added: Some localisation for: DA, DE, EN, ES, FI, FR, HU, IT, JA, KO, NL, NO, PL, PT, RU, SV, TR, zh_Hans, zh_Hant
+* Added: Chosen report is now remembered.
+
+Version 3.01 (Jul-2007)
+* Fixed: Stats display properly when site change and flipped
+* Fixed: Stats display properly after update
+* Fixed: Shaded area behind graph no aligns to 0
+* Added: y axis on main graph
+* Added: Date range selection at a day / week / month / 3month / 6 month / year level. When below month, the stats will reflect the change, but the graphs will be for a month period still.
+
+Version 3.0 (Jul-2007)
+* lots of changes brought about by Google Analytics' new reporting. Unfortunately the data available for the simple Dashalytics 2.0 layout is no longer available :(
+* lots of bugs no doubt...
+
+Version 2.4 (Apr-2007)
+* Added: Saves PageView / Visits viewing option
+* Added: Hungarian localisation, thanks to Abzu (http://www.machonosit.hu/)
+* Fixed: Update available would trigger sometimes in error.
+
+Version 2.3 (20-Oct-2006)
+* Google changed their page so when getting the site list, you would get duplicates.
+* Recompiled the Keychain plugin. Hopefully it works on G4/G5 systems correctly.
+
+Version 2.2 (10-Oct-2006)
+* allow special characters in your password, eg $
+
+Version 2.1 (28-Aug-2006)
+* Handle multiple accounts. If you have a drop down on the right hand side, you'll understand and have been waiting for this.
+* Pageview / Visits now the full words.
+* Localization
+* Some optimisation of tantan's Google Analytics library (Thanks Sam)
+
+Version 2.0 (25-Aug-2006)
+* Forget Version 1.0 lets go straight to version 2!!! 
+
+Version 0.7 (09-Aug-2006)
+* Fixed: Stopped getting and parsing a page when retrieving stats. Page is only needed when getting the site list.
+* Fixed: Multibyte characters display properly for ALL Google Analytics languages.
+* Change: Check for updated versions is less frequent (every 5hrs) rather than every time you refresh the stats!! Plus when the widget loads it also checks.
+
+Version 0.6 (06-Aug-2006)
+* Change: some flakey things were going on when getting sites multiple times in a row.
+* Change: Handle accounts that aren't using US English. Multi-byte character support is not working, so ? will appear instead. Hopefully we can get it working by version 1.0. If you can work out how to handle Multibyte support, please let me know by using the contact for at the bottom of http://dashalytics.rovingrob.com
+
+Version 0.5 (5-Aug-2006)
+* Change: Version checking pops up a little stamp in the top left corner showing the latest version. Some nice eye candy. If you get this message, flip the widget, it looks cool ;)
+* Change: URL of the latest version has changed
+* Removed: for some reason i had localisation.js in there. File doesn't exists. Localisation (notice it's the EN English spelling) is coming.
+* Fixed: If your Google Analytics username or password has a space or period in it, things would go bad.
+* Change: New icon too. I'll come up with something cool for that shortly (i hope);
+* Fixed: Changing accounts doesn't clear the old site list.
+
+Version 0.2 (04-Aug-2006)
+* Change: almost some minty goodness there. Sorry i thought it may look nicer...
+* Change: the date range to be today to today - 6 rather than yesterday to yesterday - 6
+* Improved time between checking.
+	* If the Widget has been shown within the last 5 minutes and update will not take place. I doubt that the Analytics data is even updated that frequently.
+* Added: Version is "Red" if out of date 
+* Added: Clicking on the site name takes you to your Google Analytics page
+* Change: version numbering is silly, who worries about minor updates.
+
+Version 0.0.1 (02-Aug-2006)
+* Initial Release

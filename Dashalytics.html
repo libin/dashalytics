@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<!-- 
+		Dashalytics: A Google Analytics Widget for Mac OSX
+		Copyright (C) 2006  Robert Scriva (dashalytics@rovingrob.com)
+
+		This program is free software; you can redistribute it and/or
+		modify it under the terms of the GNU General Public License
+		as published by the Free Software Foundation; either version 2
+		of the License, or (at your option) any later version.
+
+		This program is distributed in the hope that it will be useful,
+		but WITHOUT ANY WARRANTY; without even the implied warranty of
+		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+		GNU General Public License for more details.
+
+		You should have received a copy of the GNU General Public License
+		along with this program; if not, write to the Free Software
+		Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+	-->
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="AppleClasses/AppleAnimator.js" charset="utf-8" />
+    <script type="text/javascript" src="AppleClasses/AppleButton.js" charset="utf-8" />
+    <script type="text/javascript" src="AppleClasses/AppleInfoButton.js" charset="utf-8" />
+    <script type="text/javascript" src="AppleClasses/AppleScrollbar.js" charset="utf-8" />
+    <script type="text/javascript" src="AppleClasses/AppleScrollArea.js" charset="utf-8" />
+    <script type="text/javascript" src="AppleClasses/AppleSlider.js" charset="utf-8" />
+    <script type="text/javascript" src="AppleClasses/ApplePrivate.js" charset="utf-8" />
+	<script type='text/javascript' src='Scripts/dashalytics.js' charset="utf-8" />
+	<script type='text/javascript' src='Scripts/progressIndicator.js' charset="utf-8" />
+	<script type='text/javascript' src='localizedStrings.js' charset='utf-8'/>
+	<script type='text/javascript' src='Scripts/prototype.js' charset="utf-8" />
+	<script type='text/javascript' src='Scripts/effects.js' charset="utf-8" />
+	<script type='text/javascript' src='Scripts/glider.js' charset="utf-8" />
+	<script type='text/javascript' src='Scripts/tooltip.js' charset="utf-8" />
+	<script type='text/javascript' src='Scripts/datadisplay.js' charset="utf-8" />
+	<script type='text/javascript' src='Scripts/number-functions.js' charset="utf-8" />
+
+    <style type="text/css">
+        @import "./css/Dashalytics.css";
+		@import "./css/DashalyticsControls.css";
+		@import "./css/DashalyticsBack.css";
+		@import "./css/glider.css";
+		@import "./css/graph.css";
+    </style>
+
+
+</head>
+<body onload="specialFirstLoad();">
+	<div id="front">
+		<div id="front-updateavailimg">
+			<a id="getver" href="http://dashalytics.rovingrob.com" target="_blank" onClick="{goToURL(downloadURL); return false;}"></a>
+		</div>
+
+		<div id-"header" style="margin-left: 15px;">
+				<h1 id="siteName"><a id="sitelink" target="_blank" onClick="{gotoSiteURL(); return false;}">&nbsp;</a></h1>
+		</div>
+
+		<div id="display_content" style="position:absolute; top: 35px;left: 15px;">
+			<div id="visitors-overview" style="clear: none; width: 368px; height: 178px; margin-right: 0pt;">
+
+				<div id="glider">
+					<div class="scroller">
+						<div class="content">
+							<div class="section" id="section1">
+								<div id="visitov-subtitle">&nbsp;</div>
+								<div id="visitov-graph" style="position:absolute; overflow:hidden; position: relative; height: auto; width: 363px; ">
+									<canvas id="visitov-canvas" style="width: 368px;height: 100px;">
+									</canvas>
+									<div id="visitov-graph-tips"></div>
+								</div>
+								<!--<div id="visitov-scroller" style="width: 99%; position:relative; opacity: 0.25;"></div>-->
+								<div id="visitov-narrative" style="font-size: 12px; line-height: 16px; font-weight: bold;padding: 5px 0px 10px 0px;"></div>
+							</div>
+							<div class="section" id="section2">
+							</div>
+							<div class="section" id="section3">
+							</div>
+						</div>
+					</div>			
+				</div>
+				<!-- scroller buttons for glider -->
+				<div id="but_previous" class="prev_item"></div>
+				<div id="but_next" class="next_item"></div>
+
+				<div id="app_switcher" >
+					<div class="app_switcher_unselected">
+						<a href="#" class="app_switcher_button" onclick="drop_down_menu($('app_switcher_menu'), event); return false;">
+							<div id="current_report_name" class="name">Visitors Overview</div>
+						</a>
+					</div>
+					<div id="app_switcher_menu" style="display:none;">
+						<a href="#" onclick="switch_report('visit'); return false;">
+							<div class="menu_item">
+								<div id="visit_report" class="name">Visitors Overview</div>
+							</div>
+						</a>
+						<a href="#" onclick="switch_report('content'); return false;">
+							<div class="menu_item">
+								<div id="content_report" class="name">Content Overview</div>
+							</div>
+						</a>
+						<a href="#" onclick="switch_report('traffic'); return false;">
+							<div class="menu_item" >
+								<div id="traffic_report" class="name">Traffic Sources Overview</div>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div id="time_span">
+					<table cellspacing='0' class='mytable'>
+						<tr align='center'>
+							<td onclick='dayclick(event, this, "1d");'>
+								<div class='left'>&nbsp;</div><div id='1dtext' class='middle'></div><div class='right'>&nbsp;</div>
+							</td>
+							<td onclick='dayclick(event, this, "1w");'>
+								<div class='left'>&nbsp;</div><div id='1wtext' class='middle'></div><div class='right'>&nbsp;</div>
+							</td>
+							<td onclick='dayclick(event, this, "1m");'>
+								<div class='left'>&nbsp;</div><div id='1mtext' class='middle'></div><div class='right'>&nbsp;</div>
+							</td>
+							<td onclick='dayclick(event, this, "3m");'>
+								<div class='left'>&nbsp;</div><div id='3mtext' class='middle'></div><div class='right'>&nbsp;</div>
+							</td>
+							<td onclick='dayclick(event, this, "6m");'>
+								<div class='left'>&nbsp;</div><div id='6mtext' class='middle'></div><div class='right'>&nbsp;</div>
+							</td>
+							<td onclick='dayclick(event, this, "1y");'>
+								<div class='left'>&nbsp;</div><div id='1ytext' class='middle'></div><div class='right'>&nbsp;</div>
+							</td>
+							<td onclick='dayclick(event, this, "2y");'>
+								<div class='left'>&nbsp;</div><div id='2ytext' class='middle'></div><div class='right'>&nbsp;</div>
+							</td>
+						</tr>
+					</table>
+					
+				</div>
+			</div> 
+		</div> <!-- end div.content -->
+		
+		<div id="footer">
+			<img id="front-spinner" src="Images/Spinner.white/1.png" />
+			<div id="info" onclick="event.stopPropagation(); event.preventDefault();">
+				<script type="text/javascript">AppleCreateInfoButton('info', 'front', 'white', 'white', 'showBack');</script>
+			</div>
+		</div>
+	</div> <!-- end div.front -->
+
+    <div id="back"> <!-- start div.back -->
+		<img id="back-updateavailimg" src="Images/updateavailback.png" />
+	
+    	<select id="sitelist"></select>
+		<label id="username-label">&nbsp;</label>
+		<input id="username-input" onkeypress='inputKeyPress(event);'></input>
+		<label type="text" id="password-label">&nbsp;</label>
+		<input type="password" id="password-input" onkeypress='inputKeyPress(event);'></input>
+
+    	<div id="getsitesbutton">
+    		<script type="text/javascript">AppleCreateGlassButton('getsitesbutton', 'Get Sites', true, 'getSiteList');</script>
+    	</div>
+
+		<img id="back-spinner" src="Images/Spinner.white/1.png" />
+
+		<div id="error"></div>
+		<label id="about">Uses, under GPL, GoogleAnalytics, XML and Curl from tantan</label>
+    	<label id="version">&nbsp;</label>
+		<label id="copyleft">Visit <a href="" target="_blank" onClick="{goToURL(homeURL); return false;}">Dashalytics</a> on the web. <a href="" target="_blank" onClick="{goToURL(donateURL); return false;}">Donate</a></label>
+	
+        <div id="done">
+        	<script type="text/javascript">AppleCreateGlassButton('done', 'Done', true, 'showFront');</script>
+        </div>
+    </div><!-- end div.back -->
+	
+	
+</body>
+</html>

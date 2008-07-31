@@ -1,0 +1,135 @@
+/*
+Dashalytics: A Google Analytics Widget for Mac OSX
+Copyright (C) 2006  Robert Scriva (dashalytics@rovingrob.com)
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
+
+#back * {
+//	border: 1px solid #fff;
+}
+#back {
+	width: 375px;
+	height: 220px;
+	background: url("../../Images/back.png") no-repeat;
+	color: #fff;
+	font-weight: bold;
+	display:none;
+	position: relative;
+}
+
+#back-updateavailimg {
+	position: absolute;
+	width: 51px;
+	height: 51px;
+	right: 0px;
+	top: 0px;
+	z-index: -999;
+	display: none;
+}
+
+#version {
+	position: absolute;
+	font-size: 10px;
+	top: 186px;
+	left: 25px;
+}
+
+#copyleft {
+	position: absolute;
+	font-size: 10px;
+	top: 186px;
+	left: 55px;
+}
+
+#error {
+	position: absolute;
+	font-size: 10px;
+	top: 90px;
+	left: 18px;
+	height: 60px;
+	right: 20px;
+	font-size: 0.9em; 
+}
+
+#about {
+	position: absolute;
+	font-size: 10px;
+	bottom: 35px;
+	left: 18px;
+	width: 260px;
+	font-weight: normal;
+	display:none;
+}
+
+#username-input {
+	position: absolute;
+	color: black;
+	top: 40px;
+	left: 120px;
+	width: 130px;
+}
+
+#password-input {
+	position: absolute;
+	color: black;
+	top: 65px;
+	left: 120px;
+	width: 130px;
+}
+
+#password-label {
+	position: absolute;
+	font-size: 10px;
+	left: 20px;
+	top: 68px;
+}
+
+#username-label {
+	position: absolute;
+	font-size: 10px;
+	left: 20px;
+	top: 44px;
+}
+
+/***** Back: Buttons *****/
+#getsitesbutton {
+	position: absolute;
+	top: 64px;
+	right: 44px;
+}
+
+#done {
+	position: absolute;
+	top: 175px;
+	right: 25px;
+}
+
+#back-spinner {
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	right: 25px;
+	top: 19px;
+	display: none;
+}
+
+/***** Back: Inputs *****/
+#sitelist {
+	position: absolute;
+	width: 310px;
+	left: 20px;
+	top: 18px;
+}
