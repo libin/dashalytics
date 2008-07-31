@@ -29,7 +29,7 @@
 	<key>Plugin</key>
 	<string>KeyChainAccess.widgetplugin</string>
 	<key>Height</key>
-	<integer>230</integer>
+	<integer>255</integer>
 	<key>Width</key>
 	<integer>400</integer>
 </dict>

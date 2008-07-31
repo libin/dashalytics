@@ -4,13 +4,13 @@
 div.scroller { 
 	/* modify width and height of scrolling section if necessary	*/		
 	width: 368px; 
-	height: 160px;
+	height: 185px;
 	overflow: hidden;
 }
 div.scroller div.section {
 	/* modify width and height of each section as needed (should match the size of the scroller window)	*/		
 	width:368px;
-	height:160px;
+	height:185px;
 	overflow:hidden;
 	float:left;
 	padding:2px;

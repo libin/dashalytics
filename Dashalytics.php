@@ -103,7 +103,7 @@
 		$reports = array("VisitorsOverviewReport","TrafficSourcesReport","ContentReport");
 
 		foreach($reports as $report) {
-			$gaReportXML = $ga->getReportXML($siteProfile, $start, $stop, $report, $gdfmt);
+			$gaReportXML = $ga->getReportData($siteProfile, $start, $stop, $report);
 			$xmlreports[] = XML_unserialize($gaReportXML); 
 		}
 

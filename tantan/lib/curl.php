@@ -4,9 +4,13 @@ This is a clone of the PEAR HTTP/Request class object. It uses libcurl to do the
 Should also work with the HTTPS protocol
 
 Important: Not every method has been ported, just the ones that were needed.
+
+$Revision$
+$Date$
+$URL$
 */
 
-class TanTanCurl {
+class TanTanHTTPRequestCurl {
     var $curl;
     var $postData;
     var $cookies;
@@ -15,12 +19,35 @@ class TanTanCurl {
     var $headers;
     var $url;
     
-    function TanTanCurl() {
+    function TanTanHTTPRequestCurl($url = '', $params = array()) {
         $this->curl = curl_init();
         $this->postData = array();
         $this->cookies = array();
         $this->headers = array();
-        $this->url = false;
+        if (!empty($url)) { 
+            $this->setURL($url);
+        } else { 
+            $this->setURL(false); 
+        }
+        foreach ($params as $key => $value) {
+            $this->{'_' . $key} = $value;
+        }
+        
+        $this->addHeader('Connection', 'close');
+        
+        // We don't do keep-alives by default
+        $this->addHeader('Connection', 'close');
+
+        // Basic authentication
+        if (!empty($this->_user)) {
+            $this->addHeader('Authorization', 'Basic ' . base64_encode($this->_user . ':' . $this->_pass));
+        }
+
+        // Proxy authentication (see bug #5913)
+        if (!empty($this->_proxy_user)) {
+            $this->addHeader('Proxy-Authorization', 'Basic ' . base64_encode($this->_proxy_user . ':' . $this->_proxy_pass));
+        }
+
     }
     
     function addHeader($header, $value) {
@@ -29,6 +56,14 @@ class TanTanCurl {
     
     function setMethod($method) {
         switch ($method) {
+            case 'DELETE':
+                curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, 'DELETE');
+            break;
+            case HTTP_REQUEST_METHOD_PUT:
+            case 'PUT':
+                curl_setopt($this->curl, CURLOPT_PUT, true);
+                //CURLOPT_INFILE CURLOPT_INFILESIZE
+            break;
             case HTTP_REQUEST_METHOD_POST:
             case 'POST':
                 curl_setopt($this->curl, CURLOPT_POST, true);
@@ -74,13 +109,12 @@ class TanTanCurl {
             }
             // *** TODO ***
             // weird, libcurl doesnt seem to POST correctly
-            //curl_setopt($this->curl, CURL_POST, true);
-            //curl_setopt($this->curl, CURL_POSTFIELDS, $postVars);
             curl_setopt($this->curl, CURLOPT_POST, true);
             curl_setopt($this->curl, CURLOPT_POSTFIELDS, $postVars);
 
             //curl_setopt($this->curl, CURLOPT_HTTPGET, true);
             //$this->url .= '?'.$postVars;
+
 
         } else {
             curl_setopt($this->curl, CURLOPT_HTTPGET, true);
@@ -104,7 +138,13 @@ class TanTanCurl {
         }
     }
     function getResponseCookies() {
-        $hdrCookies = explode("\n", $this->response['header']['Set-Cookie']);
+        $hdrCookies = array();
+        foreach ($this->response['header'] as $key => $value) {
+            if (strtolower($key) == 'set-cookie') {
+                $hdrCookies = array_merge($hdrCookies, explode("\n", $value));
+            }
+        }
+        //$hdrCookies = explode("\n", $this->response['header']['Set-Cookie']);
         $cookies = array();
         
         foreach ($hdrCookies as $cookie) {
@@ -119,18 +159,37 @@ class TanTanCurl {
     function getResponseBody() {
         return $this->response['body'];
     }
+    function getResponseCode() {
+        return $this->response['code'];
+    }
     function getResponseRaw() {
         return $this->raw;
     }
-    function clearPostData() {
-        $this->postData = array();
+    function clearPostData($var=false) {
+        if (!$var) {
+            $this->postData = array();
+        } else {
+            unset($this->postData[$var]);
+        }
     }
     
     function _parseResponse($this_response) {
+        if (substr_count($this_response, 'HTTP/1.') > 1) { // yet another weird bug. CURL seems to be appending response bodies together
+            $chunks = preg_split('@(HTTP/[0-9]\.[0-9] [0-9]{3}.*\n)@', $this_response, -1, PREG_SPLIT_DELIM_CAPTURE);
+            $this_response = array_pop($chunks);
+            $this_response = array_pop($chunks) . $this_response;
+
+        }
+        
         list($response_headers, $response_body) = explode("\r\n\r\n", $this_response, 2);
         $response_header_lines = explode("\r\n", $response_headers);
+
         $http_response_line = array_shift($response_header_lines);
-        if(preg_match('@^HTTP/[0-9]\.[0-9] ([0-9]{3})@',$http_response_line, $matches)) { $response_code = $matches[1]; }
+        if (preg_match('@^HTTP/[0-9]\.[0-9] 100@',$http_response_line, $matches)) { 
+            return $this->_parseResponse($response_body); 
+        } else if(preg_match('@^HTTP/[0-9]\.[0-9] ([0-9]{3})@',$http_response_line, $matches)) { 
+            $response_code = $matches[1]; 
+        }
         $response_header_array = array();
         foreach($response_header_lines as $header_line) {
             list($header,$value) = explode(': ', $header_line, 2);

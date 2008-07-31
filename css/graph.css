@@ -40,11 +40,11 @@
 .spark-canvas { width: 120px; height: 30px; }
 .spark-summary { font-weight: bold; font-size:12px; width: 45%; }
 
-.display-table { width: 50%; border: 0; cellspacing: 5; cellpadding:5; float:left; top:15px;}
+.display-table { width: 100%; border: 0; cellspacing: 5; cellpadding:5; float:left; top:15px;}
 .display-table th, .display-table td { font-size:9px; text-align: left;}
-.display-table th.visit-col1 { width: 135px; }
-.display-table th.traffic-col1 { width: 135px; }
-.display-table th.content-col1 { width: 115px; }
+.display-table th.visit-col1 { width: 305px; }
+.display-table th.traffic-col1 { width: 305px; }
+.display-table th.content-col1 { width: 285px; }
 
 .display-table td.col1 {text-align:left; }
 .display-table th.coldata, .display-table td.coldata {text-align:right; }
